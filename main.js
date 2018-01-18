@@ -29,7 +29,7 @@
             componentState: {
               template: 'log-pannel.html',
               module: 'app.spinal-pannel',
-              controller: 'InspectorCtrl'
+              controller: 'LoggerCtrl'
             }
           }
         })
@@ -37,7 +37,7 @@
 
       }
     ])
-    .controller('InspectorCtrl', ["$scope", "$injector", "authService", "$mdToast", "$interval", "$timeout",
+    .controller('LoggerCtrl', ["$scope", "$injector", "authService", "$mdToast", "$interval", "$timeout",
       function ($scope, $injector, authService, $mdToast, $interval, $timeout) {
         $scope.injector = $injector;
         $scope.log = "log not ok";
