@@ -18,7 +18,7 @@
         }
 
         goldenLayoutService.registerPannel({
-          id: "drag-folder-explorer",
+          id: "drag-log-pannel",
           name: "Log",
           cfg: {
             isClosable: true,
