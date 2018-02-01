@@ -15,5 +15,5 @@
   "author": "Laurent HA TAM DAN",
   "license": "SEE LICENSE IN license.pdf",
   "src": ["main.js"],
-  "srcTemplate": ["template/log-pannel.html"]
+  "srcTemplate": ["template/spinal-env-drive-pannel-logs/log-pannel.html"]
 }
