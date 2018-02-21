@@ -32,66 +32,49 @@
               controller: 'LoggerCtrl'
             }
           }
-        })
-
-
+        });
       }
     ])
-	.controller('LoggerCtrl', ["spinalFileSystem", "$scope", "$injector", "authService", "$mdToast", "$interval", "$timeout",
-	function (spinalFileSystem, $scope, $injector, authService, $mdToast, $interval, $timeout) {
+    .controller('LoggerCtrl', ["spinalFileSystem", "$scope", "$injector", "authService", "$mdToast", "$interval", "$timeout",
+      function (spinalFileSystem, $scope, $injector, authService, $mdToast, $interval, $timeout) {
         $scope.injector = $injector;
-        $scope.log = "log not ok";
-        setTimeout(() => {
-          $scope.log = "log ok";
-        }, 1000);
-
-	  $scope.folderDropCfg = {
-	      "drop": (event) => {
-		  event.stopPropagation(); // Stops some browsers from redirecting.
-		  event.preventDefault();
-      let selected = spinalFileSystem.FE_selected_drag;
-		  if (selected && selected[0]) { // change to multiple selection later
-          $scope.fs_path = Array.from(spinalFileSystem.FE_fspath_drag);
-          let serv_id = FileSystem._objects[selected[0]._server_id];
-		      let log = serv_id._info.log;
-          if (log)
-          {
-            let tab = [];
-            for (var i = 0; i < log.length; i++)
-            {
-              tab.push({
-                  action:log[i].action.get(),
-                  date:log[i].date.get(),
-                  name:log[i].name.get()
-          })
+        $scope.folderDropCfg = {
+          "drop": (event) => {
+            event.stopPropagation(); // Stops some browsers from redirecting.
+            event.preventDefault();
+            let selected = spinalFileSystem.FE_selected_drag;
+            if (selected && selected[0]) { // change to multiple selection later
+              $scope.fs_path = Array.from(spinalFileSystem.FE_fspath_drag);
+              let serv_id = FileSystem._objects[selected[0]._server_id];
+              let log = serv_id._info.log;
+              if (log) {
+                let tab = [];
+                for (var i = 0; i < log.length; i++) {
+                  tab.push({
+                    action: log[i].action.get(),
+                    date: new Date(log[i].date.get()).toLocaleString(),
+                    name: log[i].name.get()
+                  });
+                }
+                $scope.name = selected[0].name;
+                $scope.records = tab;
+              } else {
+                $scope.name = selected[0].name;
+                $scope.records = [];
+              }
             }
-            $scope.name = selected[0].name;
-            $scope.records = tab;
+            return false;
+          },
+          "dragover": (event) => {
+            event.preventDefault();
+            return false;
+          },
+          "dragenter": (event) => {
+            event.preventDefault();
+            return false;
           }
-          else
-            {
-              $scope.name = selected[0].name;
-              $scope.records = [];
-            }
-		  }
-		  return false;
-	      },
-	      "dragover": (event) => {
-		  event.preventDefault();
 
-		  return false;
-	      },
-	      "dragenter": (event) => {
-		  event.preventDefault();
-		  return false;
-	      }
-
-    };
-    
-	  
+        };
       }
     ]);
-
-
-
 })();
