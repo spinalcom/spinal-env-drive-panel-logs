@@ -6,7 +6,10 @@
     <input ng-model='filterExpr' style="max-height: 25px; color: black;">
     <hr>
   </div>
-  <div style="height: 100%;" folder-drop folderdrop-events="folderDropCfg">
+  <div style="height: calc(100% - 33px);" folder-drop folderdrop-events="folderDropCfg">
+    <div ng-if="loading" layout="row" layout-sm="column" layout-align="space-around">
+      <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+    </div>
     <table style="table-layout: fixed; min-width: 400px; width: 94%; max-height: 100%; margin-left:3%; margin-right: 3%">
       <thead style=" border-bottom: 1px solid #ddd;">
         <tr style="height: 25px; border-top: 1px;">
@@ -23,7 +26,5 @@
         </tr>
       </tbody>
     </table>
-    <hr style="display: none;">
   </div>
-
 </md-content>
