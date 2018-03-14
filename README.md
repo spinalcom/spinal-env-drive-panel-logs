@@ -1,1 +1,1 @@
-# spinal-env-drive-pannel-logs
+# spinal-env-drive-panel-logs
