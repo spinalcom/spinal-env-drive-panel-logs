@@ -1,5 +1,5 @@
 (function () {
-  angular.module('app.spinal-pannel')
+  angular.module('app.spinal-panel')
     .run(["$templateCache", "$http", "goldenLayoutService",
       function ($templateCache, $http, goldenLayoutService) {
         let load_template = (uri, name) => {
@@ -10,15 +10,15 @@
           });
         };
         let toload = [{
-          uri: '../templates/spinal-env-drive-pannel-logs/log-pannel.html',
-          name: 'log-pannel.html'
+          uri: '../templates/spinal-env-drive-panel-logs/log-panel.html',
+          name: 'log-panel.html'
         }];
         for (var i = 0; i < toload.length; i++) {
           load_template(toload[i].uri, toload[i].name);
         }
 
-        goldenLayoutService.registerPannel({
-          id: "drag-log-pannel",
+        goldenLayoutService.registerPanel({
+          id: "drag-log-panel",
           name: "Log",
           cfg: {
             isClosable: true,
@@ -27,8 +27,8 @@
             width: 20,
             componentName: 'SpinalHome',
             componentState: {
-              template: 'log-pannel.html',
-              module: 'app.spinal-pannel',
+              template: 'log-panel.html',
+              module: 'app.spinal-panel',
               controller: 'LoggerCtrl'
             }
           }
